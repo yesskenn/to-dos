@@ -4,7 +4,7 @@ let notebook = [];
 
 
 //toDoItem or task
-function createTask(title, notes, dueDate, priority, done, project){
+function createTask(title, notes, dueDate, priority, project, done){
   return {
     title: title,
     notes: notes,
@@ -66,7 +66,9 @@ function addNewTask(){
         let taskPriority = document.createElement('div');
         taskPriority.className = 'taskPriority'
 
-        
+        let didComplete = document.createElement('p');
+        didComplete.className = 'didComplete';
+
         let completeButton = document.createElement('input');
         completeButton.type="checkbox";
         completeButton.className="completeButton";
@@ -78,7 +80,7 @@ function addNewTask(){
         taskDueDate.textContent = taskie.dueDate;
         taskPriority.textContent = taskie.priority;
         
-        taskInfo.append(taskName, taskNotes, taskDueDate, taskPriority, completeButton)
+        taskInfo.append(taskName, taskNotes, taskDueDate, taskPriority, didComplete)
 
         let completeTag = document.createElement('div');
         completeTag.className = 'completeTag';
@@ -96,6 +98,15 @@ function addNewTask(){
 
         completeTag.appendChild(completeLabel);
 
+
+        let deleteBtn = document.createElement('button');
+        deleteBtn.className = 'deleteBtn';
+        deleteBtn.innerText = "DELETE";
+        taskInfo.appendChild(deleteBtn);
+
+        deleteBtn.addEventListener("click", function(){
+        taskInfo.remove();
+
         const index = notebook.indexOf(taskie);
 
         if (index !== -1){
@@ -104,8 +115,28 @@ function addNewTask(){
 
     })
 
+    completeButton.addEventListener('change', function(){
+            if (this.checked){
+                taskInfo.style.backgroundColor = "#91a0ff58";
+                taskInfo.appendChild(completeTag); 
+                taskInfo.appendChild(completeButton);
+            } else {
+                taskInfo.style.backgroundColor = "#1e1e1e";
+                taskInfo.removeChild(completeTag); 
+            }
+        })
 
-}
+        if (taskie.completeButton){
+
+                taskInfo.style.backgroundColor = "#91a0ff58";
+                taskInfo.appendChild(completeTag); 
+                completeTag.appendChild(completeButton);
+                taskInfo.appendChild(completeButton);
+
+      }})
+    };
+
+
 
 addNewTask();
 
@@ -114,7 +145,6 @@ const taskForm = document.querySelector("#task-form");
 
 const sidebar = document.querySelector("#sidebar");
 const showTaskButton = document.querySelector("#addTask");
-const submitTask = document.querySelector("#submit-button")
 
 
 //add this to a add new task.js file
@@ -125,3 +155,23 @@ showTaskButton.addEventListener("click", () => {
     document.getElementById('task-form').reset();
 
 })
+
+const submitTaskButton = document.querySelector("#submit-button")
+
+submitTaskButton.addEventListener("click", (e) => {
+  e.preventDefault();
+    const newUserTask = createTask(
+        document.getElementById('taskTitle').value,
+        document.getElementById('taskNotes').value,
+        document.getElementById('taskDueDate').value,
+        document.getElementById('priorities').value,
+        document.getElementById('project-folders').value,
+        false
+        
+    )
+notebook.push(newUserTask);
+addNewTask(newUserTask);
+});
+
+
+
