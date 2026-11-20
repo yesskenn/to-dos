@@ -1,3 +1,179 @@
-body { 
+@import url('https://fonts.googleapis.com/css2?family=Bitter:ital,wght@0,100..900;1,100..900&family=Instrument+Serif:ital@0;1&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Outfit:wght@100..900&display=swap');
+
+/* josh comeau's coool css reset */
+
+
+/* 1. Use a more-intuitive box-sizing model */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+/* 2. Remove default margin */
+*:not(dialog) {
+  margin: 0;
+}
+
+/* 3. Enable keyword animations */
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    interpolate-size: allow-keywords;
+  }
+}
+
+body {
+  /* 4. Increase line-height */
+  line-height: 1.5;
+  /* 5. Improve text rendering */
+  -webkit-font-smoothing: antialiased;
+}
+
+/* 6. Improve media defaults */
+img, picture, video, canvas, svg {
+  display: block;
+  max-width: 100%;
+}
+
+/* 7. Inherit fonts for form controls */
+input, button, textarea, select {
+  font: inherit;
+}
+
+/* 8. Avoid text overflows */
+p, h1, h2, h3, h4, h5, h6 {
+  overflow-wrap: break-word;
+}
+
+/* 9. Improve line wrapping */
+p {
+  text-wrap: pretty;
+}
+h1, h2, h3, h4, h5, h6 {
+  text-wrap: balance;
+}
+
+/*
+  10. Create a root stacking context
+*/
+#root, #__next {
+  isolation: isolate;
+}
+
+
+html{
+  height: 100%;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Outfit';
+  height: 100%;
+  background-color: #1e1e1e;
+  color: #c1c1c1;
+  display: grid;
+  grid-template-columns: 30% 1fr;
+  grid-template-rows: repeat(auto-fit, 3fr);
+  gap: 1em;
+  height: 100%;
+}
+
+header {
+    height: 15vh;
+}
+
+h1{
+    padding: 1em auto;
+}
+main {
+    border:solid 1px yellow;
+    width: 100%;
+    
+}
+
+footer{
+    grid-column: 1/3;
+    width: 100%;
+    border: solid 2px azure;
+    padding: 1em;
+   
+    
+}
+.header-wrapper{
+    grid-column: 1/3; 
+    width: 100%;
+    display: grid;
+    border: solid 1px green;
+    grid-template-columns: repeat(2,1fr);
+    grid-template-rows: auto;
+    min-height:100%;
+    
+    grid-template-areas: 
+    "greeting" "action-buttons";
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.2) 0px 3px 7px -3px;
+    padding: 1em;
+    align-items: center;
+
+
+}
+.project-tab{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 10px;
+}
+.avatar{
+    max-width: 10%;
+    height: auto;
+}
+
+.task{
+    border: solid 1px purple;
+    border-radius: 0.4em;
+    gap: 0.5em;
+    position: relative;
+    display: grid;
+    grid-template-rows: 1fr auto;
+    box-shadow: 6px 6px 0 rgb(198, 98, 231);
+	max-width: 70%;
+	padding: .4rem 1rem .2rem;
+}
+
+form{
+    display: flex;
+    flex-direction: column;
+    gap:0.4em;
+    
+}
+
+label {
+    color: white;
+    display: block;
+}
+
+input,
+select{
+    display:block;
+    height: 2.5em;
+    width: 100%;
+    color: white;
     background-color: #1e1e1e;
+    border-radius: 0.4em;
+}
+
+.action-btn{
+    border: dashed 2px white;
+    border-radius: 99px;
+    padding: 8px 12px;
+    text-align: center;
+    max-width: 30%;
+    color: white;
+}
+.submit-btn{
+    border: solid 2px white;
+    border-radius: 0.4em;
+    padding: 8px 12px;
+    margin: 0.5em auto;
+    text-align: center;
+    min-width: 30%;
+    color: white;
+    background-color: #1e1e1e;
+
 }
