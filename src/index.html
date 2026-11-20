@@ -22,14 +22,14 @@
         </div>
 
         <div class="nav-buttons">
-            <div class="action-btn">Add Task</div>
+            <button class="action-btn">Add Task</button>
         </div>
     
     </div>
 
 
 
-    <div class="sidebar">
+    <div class="sidebar" id="sidebar">
         <nav id="nav">
              <div id="logo">     
                 <i class="mdi mdi-microsoft-windows"></i>
@@ -38,17 +38,44 @@
         
    
     <div id="nav-desktop">
-          <ul>
-            <li id="menu-item1">Add Task</li>
-            <li id="menu-item2">Completed</li>
-            <li id="menu-item3">All Tasks</li>
-            <li id="menu-item4">Projects
-                <ul>
-                    <li>Default</li>
-                    <li>New Project</li>
-                </ul>
-            </li>
-        </ul>
+          
+            <button class="menu-button" id="addTask">Add Task</button>
+            <button class="menu-button" id="completed">Completed</button>
+            <button class="menu-button" id="allTasks">All Tasks</button>
+            <button class="menu-button" id="projects">Projects</button>
+                
+                    <button id="default-project">Default</button>
+                    <button id="new-project">New Project</button>
+              
+
+         <div class="task" id="default-task-form">
+                <h3>Task Title</h3>
+                <form id="task-form" class="task-form">
+                    <label for="taskTitle">Task Name
+                        <input type="text" name="taskTitle" id="taskTitle"/>
+                    </label>
+                    <label for="taskNotes">Notes
+                        <input type="text" name="taskNotes" id="taskNotes"/>
+                    </label>
+                    <label for="taskDueDate">Due Date
+                        <input type="date" id="taskDueDate" name="taskDueDate" />
+                    </label>
+                    <label for="priorities">Set Priority
+                        <select name="priorities" id="priorities">
+                            <option value="high">High</option>
+                            <option value="mid">Mid</option>
+                            <option value="low">Low</option>
+                        </select>
+                    </label>
+                    <label for="project-folders">Project Folder
+                        <select name="project-folders" id="project-folders">
+                            <option value="default">Default</option>
+                        </select>
+                    </label>
+                    <input type="submit" class="submit-btn" id="submit-button" value="Add"/>
+                </form>
+               
+            </div>
     </div>
 
 
@@ -77,34 +104,7 @@
         <div class="projects-wrapper" id="projects-wrapper">;
         <div class="projects-tab">
             <h2>Default</h2>
-            <div class="task" id="default-task-form">
-                <h3>Task Title</h3>
-                <form id = "task-form" class="addTask">
-                    <label for="taskTitle">Task Name
-                        <input type="text" name="taskTitle" id="taskTitle"/>
-                    </label>
-                    <label for="taskNotes">Notes
-                        <input type="text" name="taskNotes" id="taskNotes"/>
-                    </label>
-                    <label for="taskDueDate">Due Date
-                        <input type="date" id="taskDueDate" name="taskDueDate" />
-                    </label>
-                    <label for="priorities">Set Priority
-                        <select name="priorities" id="priorities">
-                            <option value="high">High</option>
-                            <option value="mid">Mid</option>
-                            <option value="low">Low</option>
-                        </select>
-                    </label>
-                    <label for="project-folders">Project Folder
-                        <select name="project-folders" id="project-folders">
-                            <option value="default">Default</option>
-                        </select>
-                    </label>
-                    <input type="submit" class="submit-btn" id="submit-button" value="Add"/>
-                </form>
-               
-            </div>
+           
         </div>
         </div>
     </main>

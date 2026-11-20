@@ -103,4 +103,25 @@ function addNewTask(){
         }
 
     })
+
+
 }
+
+addNewTask();
+
+
+const taskForm = document.querySelector("#task-form");
+
+const sidebar = document.querySelector("#sidebar");
+const showTaskButton = document.querySelector("#addTask");
+const submitTask = document.querySelector("#submit-button")
+
+
+//add this to a add new task.js file
+
+showTaskButton.addEventListener("click", () => {
+    taskForm.style.display = "flex";
+    sidebar.appendChild(taskForm);
+    document.getElementById('task-form').reset();
+
+})

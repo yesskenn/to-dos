@@ -177,3 +177,8 @@ select{
     background-color: #1e1e1e;
 
 }
+
+
+#default-task-form {
+    display: none;
+}
