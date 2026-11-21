@@ -40,10 +40,11 @@ function createGroup(groupName){
     return { groupName, projectTitle}
 }
 
-const projectsWrapper = document.getElementById("projects-wrapper");
+//const projectsWrapper = document.getElementById("projects-wrapper");
+const projectGrid = document.getElementById("project-grid")
 const agendaTab = document.createElement('div');
 agendaTab.className = 'agenda';
-projectsWrapper.appendChild(agendaTab);
+projectGrid.appendChild(agendaTab);
 
 
 function addNewTask(){
@@ -73,7 +74,7 @@ function addNewTask(){
         completeButton.type="checkbox";
         completeButton.className="completeButton";
 
-        agendaTab.appendChild(taskInfo);
+        projectGrid.appendChild(taskInfo);
 
         taskName.textContent = taskie.title;
         taskNotes.textContent = taskie.notes;
