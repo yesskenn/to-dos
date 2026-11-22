@@ -119,7 +119,7 @@ footer{
 }
 
 .sidebar {
-    background-color: rgb(74, 131, 151);
+    background-color: rgb(22, 33, 37);
     grid-area: 2 / 1 / 3 / 2;
     display: grid;
     grid-template-columns: auto;
@@ -229,13 +229,19 @@ select{
     border-radius: 0.4em;
 }
 
-.action-btn{
-    border: dashed 2px white;
-    border-radius: 99px;
-    padding: 8px 12px;
+.menu-button{
+    border: solid 2px white;
+    background-color: #1e1e1e;
+    border-radius: 4px;
+    padding: 0.5em 1em;
     text-align: center;
-    max-width: 30%;
-    color: white;
+    color: #ebebeb;
+    box-shadow:  
+    0.8em 0.29em rgb(51, 112, 153),
+      0.6em 0.3em rgb(51, 112, 147) inset;
+
+
+
 }
 .submit-btn{
     border: solid 2px white;
