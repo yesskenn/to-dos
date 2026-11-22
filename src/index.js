@@ -21,8 +21,8 @@ const newTask = createTask("first", "first task alert", "Nov. 29, 2026", "mid", 
 
 console.log(newTask);
 
-notebook.push(newTask);
-console.log(notebook[0]);
+//notebook.push(newTask);
+console.log(notebook);
 
 
 function project(projectTitle, projectDescription, task){
@@ -40,15 +40,13 @@ function createGroup(groupName){
     return { groupName, projectTitle}
 }
 
-//const projectsWrapper = document.getElementById("projects-wrapper");
+const projectsWrapper = document.getElementById("projects-wrapper");
 const projectGrid = document.getElementById("project-grid")
-const agendaTab = document.createElement('div');
-agendaTab.className = 'agenda';
-projectGrid.appendChild(agendaTab);
 
 
+//ADD TO DOM
 function addNewTask(){
-    agendaTab.innerHTML = "";
+    projectGrid.innerHTML = "";
     notebook.forEach(taskie => {
 
         let taskInfo = document.createElement('div');
@@ -138,8 +136,6 @@ function addNewTask(){
     };
 
 
-
-addNewTask();
 
 
 const taskForm = document.querySelector("#task-form");
