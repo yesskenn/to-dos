@@ -43,9 +43,15 @@
             <button class="menu-button" id="allTasks">All Tasks</button>
             <button class="menu-button" id="projects">Projects</button>
                 
-                    <button id="default-project">Default</button>
-                    <button id="new-project">New Project</button>
-              
+                    <button class="project-menu" id="default-project">Default</button>
+                    <button class="project-menu" id="new-project">New Project</button>
+        <div id="new-project-div">
+            <form action="" id="new-project-form">
+                <label for="projectFolderName">Project Folder Name 
+                    <input type="text" name="projectFolderName" id="projectFolderName"/>
+                </label>
+            </form>
+        </div>
 
          <div class="task" id="default-task-form">
                 <h3>Task Title</h3>
@@ -101,7 +107,7 @@
     </div>
     <main>
         <div class="projects-wrapper" id="projects-wrapper">
-            <h2>Default</h2>
+            <h2 id="project-tab-name">Default</h2>
             <div id="project-grid">
            
             </div>

@@ -1,5 +1,5 @@
 import "./styles.css";
-
+import { projectsWrapper, projectGrid } from "./DOM.js";
 let notebook = [];
 
 
@@ -35,13 +35,7 @@ function project(projectTitle, projectDescription, task){
 
 }
 
-function createGroup(groupName){
-    const projectTitle = groupName;
-    return { groupName, projectTitle}
-}
 
-const projectsWrapper = document.getElementById("projects-wrapper");
-const projectGrid = document.getElementById("project-grid")
 
 
 //ADD TO DOM
