@@ -12,41 +12,46 @@
     <title>Baby Steps</title>
 </head>
 <body>
-    <div class="header-wrapper">
-   
-        <div class="user-info">
-              <div class="avatar-container">
-                    <img src="sun.png" alt="kawaii sun avatar" class="avatar"></img>
-                </div>
-                <p><strong>Greetings, user!</strong></p>
+    <header>
+        <h1>Baby Steps: A To Do List</h1>
+         <div class="avatar-container">
+            <img src="sun.png" alt="kawaii sun avatar" class="avatar"></img>
         </div>
+        <nav>
+            <button id="menu-button1">Add Task</button>
+            <button id="menu-button2">Add Project</button>
+            <button id="menu-button3">View All Tasks</button>
 
-        <div class="nav-buttons">
-            <button class="menu-button" id="nav-addTask">Add Task</button>
-        </div>
-    
-    </div>
-
-
-    <div class="sidebar" id="sidebar">
-        <nav id="nav">
-             <div id="logo">     
-                <i class="mdi mdi-sun"></i>
-                <h1>Baby Steps To-Do</h1>
-            </div>
+        </nav>
         
+
+                <button onclick="w3_open()" class="w3-button"> 
+        <i class="mdi mdi-menu"></i>
+    </button>
+<div class="w3-animate-left" id="nav-mobile" style="display:none">
+    <button onclick="w3_close()" class="w3-button w3-margin-top w3-border w3-medium">Close &times;</button>
+
+    </header>
+
+
+
+ <div class="sidebar" id="sidebar">
+        
+
+
+
    
     <div id="nav-desktop">
           
-            <button class="menu-button" id="addTask">Add Task</button>
+            <button class="menu-button open-form-btn" data-target="#task-form" id="addTask">Add Task</button>
             <button class="menu-button" id="completed">Completed</button>
             <button class="menu-button" id="allTasks">All Tasks</button>
             <button class="menu-button" id="projects">Projects</button>
-                
-                    <button class="project-menu" id="default-project">Default</button>
-                    <button class="project-menu" id="new-project">New Project</button>
-        <div id="new-project-div">
-            <form action="" id="new-project-form">
+                   <button class="project-menu open-form-btn" id="new-project" data-target="#new-project-form">New Project</button>
+                    <h3 class="project-menu" id="default-project">Default</h3>
+                 
+       
+            <form id="new-project-form" hidden>
                 <label for="projectFolderName">Project Folder Name 
                     <input type="text" name="projectFolderName" id="projectFolderName"/>
                 </label>
@@ -55,7 +60,7 @@
 
          <div class="task" id="default-task-form">
                 <h3>Task Title</h3>
-                <form id="task-form" class="task-form">
+                <form id="task-form" class="task-form" hidden>
                     <label for="taskTitle">Task Name
                         <input type="text" name="taskTitle" id="taskTitle"/>
                     </label>
@@ -83,37 +88,15 @@
             </div>
     </div>
 
-
-    <button onclick="w3_open()" class="w3-button"> 
-        <i class="mdi mdi-menu"></i>
-    </button>
-<div class="w3-animate-left" id="nav-mobile" style="display:none">
-    <button onclick="w3_close()" class="w3-button w3-margin-top w3-border w3-medium">Close &times;</button>
-
-
-        <ul>
-            <li id="menu-item1">New Task</li>
-            <li id="menu-item2">Completed</li>
-            <li id="menu-item3">All Tasks</li>
-            <li id="menu-item4">Projects
-                <ul>
-                    <li>Default</li>
-                    <li>New Project</li>
-                </ul>
-            </li>
-        </ul>
-    </div>
-    </nav>
-    </div>
-    <main>
-        <div class="projects-tab" id="projects-tab">
-            <h2 id="project-tab-name">Default</h2>
-            <div class="grid" id="default-grid">
-           
-            </div>
+     
+ 
+ <div class="projects-tab" id="projects-tab">
+    <h2 id="project-tab-name">Default</h2>
+        <div class="grid" id="default-grid"> 
         </div>
+</div>
     
-    </main>
+
 
 
     <footer><p>BY YESSI KENNEY &copy; 2026</p>
