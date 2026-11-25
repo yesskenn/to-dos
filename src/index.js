@@ -1,5 +1,5 @@
 import "./styles.css";
-import { defaultTabGrid, taskForm, sidebar, showTaskButton } from "./DOM.js";
+import { defaultTabGrid, taskForm, sidebar, showTaskButton, newProjectBtn } from "./DOM.js";
 
 let notebook = [];
 //toDoItem or task
@@ -156,3 +156,10 @@ addNewTask(newUserTask);
 
 
 
+
+newProjectBtn.addEventListener("click", () => {
+    newProjectBtn.style.display = "flex";
+    document.getElementById('new-project-form').reset();
+    alert("this should work");
+
+})
