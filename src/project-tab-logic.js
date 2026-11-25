@@ -1,5 +1,6 @@
-import { newProjectForm } from "./DOM.js";
+import { projectTab, tabName, defaultTabGrid, newProjectForm } from "./DOM.js";
 import { updateStorage } from "./index.js";
+
 
 export const allFoldersArray = [];
 
@@ -34,10 +35,4 @@ function isDuplicateName(newFolder) {
 
 
 /////////////////// from https://mathew-theberge.github.io/Todo-List/.  https://github.com/Mathew-Theberge/Todo-List/blob/main/src/index.js
-
-function createGroup(groupName){
-    const projectTitle = groupName;
-    return { groupName, projectTitle}
-}
-
 
