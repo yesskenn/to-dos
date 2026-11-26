@@ -1,5 +1,5 @@
 import { projectTab, tabName, defaultTabGrid, newProjectForm } from "./DOM.js";
-import { updateStorage } from "./index.js";
+import { projectFolders } from "./index.js";
 
 
 export const allFoldersArray = [];
@@ -36,3 +36,17 @@ function isDuplicateName(newFolder) {
 
 /////////////////// from https://mathew-theberge.github.io/Todo-List/.  https://github.com/Mathew-Theberge/Todo-List/blob/main/src/index.js
 
+export function addNewFolder(){
+    projectFolders.forEach(foldie => {
+        let folderTabHeading = document.createElement('h3');
+        folderTabHeading.className = 'folderTabHeading';
+
+        let folderTabOption = document.createElement('option');
+        let projectFolderDrop = document.querySelector("#project-folders");
+        folderTabOption.textContent = foldie.folderName;
+        projectFolderDrop.appendChild(folderTabOption);
+
+        sidebar.appendChild(folderTabHeading);
+        folderTabHeading.textContent = foldie.folderName;
+    })
+};

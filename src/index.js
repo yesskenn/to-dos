@@ -1,8 +1,10 @@
 import "./styles.css";
-import { defaultTabGrid, taskForm, sidebar, showTaskButton, newProjectBtn } from "./DOM.js";
+import { defaultTabGrid, taskForm, sidebar, showTaskButton, newProjectBtn, newProjectForm } from "./DOM.js";
+import { addNewFolder } from "./project-tab-logic.js";
 
 let notebook = [];
-//toDoItem or task
+export const projectFolders = [];
+
 function createTask(title, notes, dueDate, priority, project, done){
   return {
     title: title,
@@ -24,10 +26,9 @@ console.log(newTask);
 console.log(notebook);
 
 
-function createFolder(folderName, folderDescription){
+function createFolder(folderName){
     return{
         folderName: folderName,
-        folderDescription: folderDescription,
 }
 }
 
@@ -158,8 +159,19 @@ addNewTask(newUserTask);
 
 
 newProjectBtn.addEventListener("click", () => {
-    newProjectBtn.style.display = "flex";
+    newProjectForm.style.display = "inline";
     document.getElementById('new-project-form').reset();
-    alert("this should work");
 
 })
+
+
+
+newProjectForm.addEventListener("submit", (e) => {
+  e.preventDefault();
+    const newUserFolder = createFolder(
+        document.getElementById('projectFolderName').value
+        
+    )
+projectFolders.push(newUserFolder);
+addNewFolder(newUserFolder);
+});
