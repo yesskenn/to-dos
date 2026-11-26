@@ -1,9 +1,8 @@
 import "./styles.css";
-import { defaultTabGrid, taskForm, sidebar, createNewTaskBtn, newProjectBtn, newProjectForm, headerAddTaskBtn, headerViewAllTasksBtn, headerAddProjectBtn } from "./DOM.js";
+import { defaultTabGrid, taskForm, sidebar, createNewTaskBtn, newProjectBtn, newProjectForm, tabName, headerAddTaskBtn, headerViewAllTasksBtn, headerAddProjectBtn } from "./DOM.js";
 import { addNewFolder, projectFolders, createFolder } from "./project-tab-logic.js";
 
 let notebook = [];
-
 function createTask(title, notes, dueDate, priority, project, done){
   return {
     title: title,
@@ -49,14 +48,14 @@ submitTaskButton.addEventListener("click", (e) => {
         
     )
 notebook.push(newUserTask);
-addNewTask(newUserTask);
+renderTask(newUserTask);
 });
 
 
 
 
 
- function addNewTask(){
+ function renderTask(){
     defaultTabGrid.innerHTML = "";
     notebook.forEach(taskie => {
 
@@ -144,14 +143,13 @@ addNewTask(newUserTask);
     };
 
 
-
+//adding a new project folder
 
 newProjectBtn.addEventListener("click", () => {
     newProjectForm.style.display = "inline";
     document.getElementById('new-project-form').reset();
 
 })
-
 
 
 newProjectForm.addEventListener("submit", (e) => {
@@ -171,6 +169,21 @@ newProjectForm.addEventListener("submit", (e) => {
 
 
 
+    export function displayCurrentFolder(folderName){
+        defaultTabGrid.replaceChildren();
+
+        const filteredTasks = projectFolders.filter((taskInfo) => {
+            if (folderName === taskFolder) {
+                return taskCard;
+            }
+        })
+        filteredTasks.forEach((taskInfo) => renderTask(taskInfo));
+        tabName.textContent = taskFolder;
+        if (filteredTasks.length === 0){
+            defaultTabGrid.append(taskForm)
+        }
+
+    }
 // headerViewAllTasksBtn.addEventListener("click", () => createFolderObj());
 
 // completedBtn.addEventListener("click", () => displayCompletedFolder());

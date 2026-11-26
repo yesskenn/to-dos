@@ -1,5 +1,5 @@
 import { tabName, folderList, folderTabOption, defaultTabGrid } from "./DOM.js";
-import { projectLoad } from './page-load.js';
+import { displayCurrentFolder } from './index.js';
 
 
 export const projectFolders = [];
@@ -48,7 +48,7 @@ export function addNewFolder(){
 
 
         folderTabLink.addEventListener("click", () => {
-            projectLoad();
+            displayCurrentFolder();
     });
 
 
@@ -56,10 +56,3 @@ export function addNewFolder(){
 };
 
         
-
-    export function displayCurrentFolder(folderName){
-        defaultTabGrid.replaceChildren();
-
-        const filteredTasks = projectFolders
-
-    }
