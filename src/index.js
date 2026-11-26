@@ -1,9 +1,8 @@
 import "./styles.css";
-import { defaultTabGrid, taskForm, sidebar, showTaskButton, newProjectBtn, newProjectForm } from "./DOM.js";
-import { addNewFolder } from "./project-tab-logic.js";
+import { defaultTabGrid, taskForm, sidebar, createNewTaskBtn, newProjectBtn, newProjectForm, headerAddTaskBtn, headerViewAllTasksBtn, headerAddProjectBtn } from "./DOM.js";
+import { addNewFolder, projectFolders, createFolder } from "./project-tab-logic.js";
 
 let notebook = [];
-export const projectFolders = [];
 
 function createTask(title, notes, dueDate, priority, project, done){
   return {
@@ -22,22 +21,14 @@ const newTask = createTask("first", "first task alert", "Nov. 29, 2026", "mid", 
 
 console.log(newTask);
 
-//notebook.push(newTask);
+notebook.push(newTask);
 console.log(notebook);
 
 
-function createFolder(folderName){
-    return{
-        folderName: folderName,
-}
-}
-
-const defaultFolder = createFolder("Default Folder", "dis the main hoe");
-console.log(defaultFolder);
 
 
 
-showTaskButton.addEventListener("click", () => {
+createNewTaskBtn.addEventListener("click", () => {
     taskForm.style.display = "flex";
     sidebar.appendChild(taskForm);
     document.getElementById('task-form').reset();
@@ -85,6 +76,9 @@ addNewTask(newUserTask);
         let taskPriority = document.createElement('div');
         taskPriority.className = 'taskPriority'
 
+        let taskFolder = document.createElement('p');
+        taskFolder.className = 'taskFolder';
+
         let didComplete = document.createElement('p');
         didComplete.className = 'didComplete';
 
@@ -98,8 +92,9 @@ addNewTask(newUserTask);
         taskNotes.textContent = taskie.notes;
         taskDueDate.textContent = taskie.dueDate;
         taskPriority.textContent = taskie.priority;
+        taskFolder.textContent = taskie.project;
         
-        taskInfo.append(taskName, taskNotes, taskDueDate, taskPriority, didComplete)
+        taskInfo.append(taskName, taskNotes, taskDueDate, taskPriority, taskFolder, didComplete)
 
         let completeTag = document.createElement('div');
         completeTag.className = 'completeTag';
@@ -145,14 +140,7 @@ addNewTask(newUserTask);
             }
         })
 
-        if (taskie.completeButton){
-
-                taskInfo.style.backgroundColor = "#91a0ff58";
-                taskInfo.appendChild(completeTag); 
-                completeTag.appendChild(completeButton);
-                taskInfo.appendChild(completeButton);
-
-      }})
+       })
     };
 
 
@@ -170,8 +158,20 @@ newProjectForm.addEventListener("submit", (e) => {
   e.preventDefault();
     const newUserFolder = createFolder(
         document.getElementById('projectFolderName').value
-        
     )
-projectFolders.push(newUserFolder);
-addNewFolder(newUserFolder);
-});
+    projectFolders.push(newUserFolder);
+
+    addNewFolder(newUserFolder);
+
+    console.log(projectFolders);
+
+    });
+
+
+
+
+
+// headerViewAllTasksBtn.addEventListener("click", () => createFolderObj());
+
+// completedBtn.addEventListener("click", () => displayCompletedFolder());
+

@@ -1,52 +1,65 @@
-import { projectTab, tabName, defaultTabGrid, newProjectForm } from "./DOM.js";
-import { projectFolders } from "./index.js";
+import { tabName, folderList, folderTabOption, defaultTabGrid } from "./DOM.js";
+import { projectLoad } from './page-load.js';
 
 
-export const allFoldersArray = [];
+export const projectFolders = [];
 
-class Folder {
-    constructor(name) {
-        this.name = name;
-    }
+
+
+ export function createFolder(folderName){
+    return{
+        folderName: folderName,
+}
 }
 
-export function createFolderObj() {
-    const formData = new FormData(newProjectForm);
-    const formDataObj = Object.fromEntries(formData);
-    const project = new Folder(formDataObj.project_name);
-    if (isDuplicateName(formDataObj.project_name.trim())) {
-        alert("Cannot have duplicate folder names");
-    } else if (!formDataObj.project_name.trim()) {
-        alert("Folder Name Cannot be empty");
-    } else {
-        allFoldersArray.push(project);
-    }
-    updateStorage();
-}
-if (localStorage.length === 0) {
-    const defaultFolder = new Folder("Default Folder");
-    allFoldersArray.push(defaultFolder);
-}
+const defaultFolder = createFolder("Default Folder", "dis the main hoe");
+console.log(defaultFolder);
+let folderName;
 
-function isDuplicateName(newFolder) {
-    return allFoldersArray.some((folder) => folder.name === newFolder);
-}
-
-
-
-/////////////////// from https://mathew-theberge.github.io/Todo-List/.  https://github.com/Mathew-Theberge/Todo-List/blob/main/src/index.js
 
 export function addNewFolder(){
-    projectFolders.forEach(foldie => {
-        let folderTabHeading = document.createElement('h3');
-        folderTabHeading.className = 'folderTabHeading';
+        folderList.innerHTML = "";
 
-        let folderTabOption = document.createElement('option');
+    projectFolders.forEach(foldie => {
+        
+        
+        //add ass dropdown option
+
+        const index = projectFolders.indexOf(foldie);
+        foldie.id = `${index}`;
+
+       
+        
         let projectFolderDrop = document.querySelector("#project-folders");
-        folderTabOption.textContent = foldie.folderName;
+        folderName = foldie.folderName;
+        folderTabOption.textContent = folderName;
+        folderTabOption.setAttribute("value", `${folderName}`);
         projectFolderDrop.appendChild(folderTabOption);
 
-        sidebar.appendChild(folderTabHeading);
-        folderTabHeading.textContent = foldie.folderName;
+        //add as sidebar option
+        let folderTabLink = document.createElement('button');
+
+        folderTabLink.textContent = folderName;
+        folderTabLink.className = 'folderTabLink';
+        folderList.appendChild(folderTabLink);
+        
+
+        tabName.textContent = folderName;
+
+
+        folderTabLink.addEventListener("click", () => {
+            projectLoad();
+    });
+
+
     })
 };
+
+        
+
+    export function displayCurrentFolder(folderName){
+        defaultTabGrid.replaceChildren();
+
+        const filteredTasks = projectFolders
+
+    }
