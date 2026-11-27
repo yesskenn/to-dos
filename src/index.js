@@ -1,27 +1,38 @@
 import "./styles.css";
-import { defaultTabGrid, taskForm, sidebar, createNewTaskBtn, newProjectBtn, newProjectForm, tabName, headerAddTaskBtn, headerViewAllTasksBtn, headerAddProjectBtn } from "./DOM.js";
-import { addNewFolder, projectFolders, createFolder } from "./project-tab-logic.js";
+import { tasksGrid, taskForm, sidebar, createNewTaskBtn, newProjectBtn, newProjectForm, foldersDropDown, folderNameInput, renderTaskObj, headerAddTaskBtn, headerViewAllTasksBtn, headerAddProjectBtn } from "./DOM.js";
+import { projectFolders, createFolder, addNewFolder } from "./project-tab-logic.js"
 
-let notebook = [];
-function createTask(title, notes, dueDate, priority, project, done){
+export const tasksArray = [];
+function createTask(title, notes, dueDate, priority, project, id, isCompleted){
   return {
     title: title,
     notes: notes,
     dueDate: dueDate, 
     priority: priority,
     project: project,
-    done: done
+    id: id,
+    isCompleted: isCompleted
 
   }
 
 }
+   
 
-const newTask = createTask("first", "first task alert", "Nov. 29, 2026", "mid", "homework", "not done")
+function updateTaskId(){
+    let number = 0;
+    tasksArray.forEach((task) => {
+        task.id = number;
+        number++;
+       
+    });
+}
+const defaultTask = createTask("Create a cool task", "first task alert", "2026-11-11", "mid", "default", 0, false)
 
-console.log(newTask);
+console.log(defaultTask);
 
-notebook.push(newTask);
-console.log(notebook);
+tasksArray.push(defaultTask);
+renderTask(defaultTask);
+console.log(tasksArray);
 
 
 
@@ -34,7 +45,7 @@ createNewTaskBtn.addEventListener("click", () => {
 
 })
 
-const submitTaskButton = document.querySelector("#submit-button")
+const submitTaskButton = document.querySelector("#submit-task")
 
 submitTaskButton.addEventListener("click", (e) => {
   e.preventDefault();
@@ -43,105 +54,27 @@ submitTaskButton.addEventListener("click", (e) => {
         document.getElementById('taskNotes').value,
         document.getElementById('taskDueDate').value,
         document.getElementById('priorities').value,
-        document.getElementById('project-folders').value,
+        document.getElementById('project-folders-drop').value,
+        null,
         false
         
     )
-notebook.push(newUserTask);
+tasksArray.push(newUserTask);
 renderTask(newUserTask);
+updateTaskId();
 });
 
 
 
 
 
- function renderTask(){
-    defaultTabGrid.innerHTML = "";
-    notebook.forEach(taskie => {
+ export function renderTask(){
+    tasksGrid.innerHTML = "";
+    tasksArray.forEach(task => {
 
-        let taskInfo = document.createElement('div');
-        taskInfo.className = 'task';
-
-        let taskName = document.createElement('h3');
-        taskName.className = 'taskName';
-
-
-        let taskNotes = document.createElement('p');
-        taskNotes.className = 'taskNotes';
-
-        let taskDueDate = document.createElement('p');
-        taskDueDate.className = 'taskDueDate';
-
-        let taskPriority = document.createElement('div');
-        taskPriority.className = 'taskPriority'
-
-        let taskFolder = document.createElement('p');
-        taskFolder.className = 'taskFolder';
-
-        let didComplete = document.createElement('p');
-        didComplete.className = 'didComplete';
-
-        let completeButton = document.createElement('input');
-        completeButton.type="checkbox";
-        completeButton.className="completeButton";
-
-        defaultTabGrid.appendChild(taskInfo);
-
-        taskName.textContent = taskie.title;
-        taskNotes.textContent = taskie.notes;
-        taskDueDate.textContent = taskie.dueDate;
-        taskPriority.textContent = taskie.priority;
-        taskFolder.textContent = taskie.project;
-        
-        taskInfo.append(taskName, taskNotes, taskDueDate, taskPriority, taskFolder, didComplete)
-
-        let completeTag = document.createElement('div');
-        completeTag.className = 'completeTag';
-
-
-        let completeCheck = document.createElement('div');
-        completeCheck.className = "completeCheck";
-
-        completeCheck.appendChild(completeButton);
-        taskInfo.appendChild(completeCheck);
-
-        let completeLabel = document.createElement('p');
-        completeLabel.className = 'completeLabel';
-        completeLabel.textContent = "DONE";
-
-        completeTag.appendChild(completeLabel);
-
-
-        let deleteBtn = document.createElement('button');
-        deleteBtn.className = 'deleteBtn';
-        deleteBtn.innerText = "DELETE";
-        taskInfo.appendChild(deleteBtn);
-
-        deleteBtn.addEventListener("click", function(){
-        taskInfo.remove();
-
-        const index = notebook.indexOf(taskie);
-
-        if (index !== -1){
-            notebook.splice(index, 1)
-        }
-
+        renderTaskObj(task);
     })
-
-    completeButton.addEventListener('change', function(){
-            if (this.checked){
-                taskInfo.style.backgroundColor = "#91a0ff58";
-                taskInfo.appendChild(completeTag); 
-                taskInfo.appendChild(completeButton);
-            } else {
-                taskInfo.style.backgroundColor = "#1e1e1e";
-                taskInfo.removeChild(completeTag); 
-            }
-        })
-
-       })
-    };
-
+};
 
 //adding a new project folder
 
@@ -155,11 +88,17 @@ newProjectBtn.addEventListener("click", () => {
 newProjectForm.addEventListener("submit", (e) => {
   e.preventDefault();
     const newUserFolder = createFolder(
-        document.getElementById('projectFolderName').value
-    )
+      folderNameInput.value
+    );
     projectFolders.push(newUserFolder);
 
-    addNewFolder(newUserFolder);
+    addNewFolder();
+
+    let newOption = document.createElement('option');
+     // create an option for the dropdown
+    newOption.value = newUserFolder.folderName;
+    newOption.textContent = newUserFolder.folderName;
+    foldersDropDown.appendChild(newOption);
 
     console.log(projectFolders);
 
@@ -169,21 +108,6 @@ newProjectForm.addEventListener("submit", (e) => {
 
 
 
-    export function displayCurrentFolder(folderName){
-        defaultTabGrid.replaceChildren();
-
-        const filteredTasks = projectFolders.filter((taskInfo) => {
-            if (folderName === taskFolder) {
-                return taskCard;
-            }
-        })
-        filteredTasks.forEach((taskInfo) => renderTask(taskInfo));
-        tabName.textContent = taskFolder;
-        if (filteredTasks.length === 0){
-            defaultTabGrid.append(taskForm)
-        }
-
-    }
 // headerViewAllTasksBtn.addEventListener("click", () => createFolderObj());
 
 // completedBtn.addEventListener("click", () => displayCompletedFolder());

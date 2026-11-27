@@ -50,13 +50,14 @@
             <button class="menu-button" id="side-allTasks">All Tasks</button>
             <button class="menu-button" id="side-projects">Projects</button>
                    <button class="project-menu open-form-btn" id="new-project" data-target="#new-project-form">New Project</button>
-                    <h3 class="project-menu" id="default-project">Default</h3>
+                    <button class="project-buttons" id="default-project">Default</button>
                  
        
             <form id="new-project-form" hidden>
-                <label for="projectFolderName">Project Folder Name 
-                    <input type="text" name="projectFolderName" id="projectFolderName"/>
+                <label for="folderNameForm">New Folder Name 
+                    <input type="text" name="folderNameForm" id="folderNameForm"/>
                 </label>
+                <input type="submit" class="submit-btn" id="submit-folder" value="Enter"/>
             </form>
         </div>
 
@@ -80,11 +81,11 @@
                         </select>
                     </label>
                     <label for="project-folders">Project Folder
-                        <select name="project-folders" id="project-folders">
+                        <select name="project-folders" id="project-folders-drop">
                             <option value="default">Default</option>
                         </select>
                     </label>
-                    <input type="submit" class="submit-btn" id="submit-button" value="Add"/>
+                    <input type="submit" class="submit-btn" id="submit-task" value="Add"/>
                 </form>
                
             </div>
@@ -94,7 +95,7 @@
  
  <div class="projects-tab" id="projects-tab">
     <h2 id="project-tab-name">Default</h2>
-        <div class="grid" id="default-grid"> 
+        <div class="tasks-grid" id="tasks-grid"> 
         </div>
 </div>
     

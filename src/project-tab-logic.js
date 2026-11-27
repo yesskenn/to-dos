@@ -1,6 +1,4 @@
-import { tabName, folderList, folderTabOption, defaultTabGrid } from "./DOM.js";
-import { displayCurrentFolder } from './index.js';
-
+import { renderTaskObj, folderList, displayCurrentFolder } from "./DOM.js";
 
 export const projectFolders = [];
 
@@ -12,47 +10,36 @@ export const projectFolders = [];
 }
 }
 
-const defaultFolder = createFolder("Default Folder", "dis the main hoe");
+export const defaultFolder = createFolder("Default Folder");
 console.log(defaultFolder);
-let folderName;
 
 
 export function addNewFolder(){
-        folderList.innerHTML = "";
+    folderList.innerHTML = "";
 
     projectFolders.forEach(foldie => {
         
-        
-        //add ass dropdown option
-
         const index = projectFolders.indexOf(foldie);
         foldie.id = `${index}`;
 
-       
-        
-        let projectFolderDrop = document.querySelector("#project-folders");
-        folderName = foldie.folderName;
-        folderTabOption.textContent = folderName;
-        folderTabOption.setAttribute("value", `${folderName}`);
-        projectFolderDrop.appendChild(folderTabOption);
+        //add as sidebar option // render folder button
 
-        //add as sidebar option
         let folderTabLink = document.createElement('button');
 
-        folderTabLink.textContent = folderName;
+        folderTabLink.textContent = foldie.folderName;
         folderTabLink.className = 'folderTabLink';
         folderList.appendChild(folderTabLink);
         
 
-        tabName.textContent = folderName;
-
+   
 
         folderTabLink.addEventListener("click", () => {
-            displayCurrentFolder();
+            displayCurrentFolder(foldie.folderName);
     });
 
 
     })
 };
 
-        
+
+   
